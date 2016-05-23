@@ -4,6 +4,8 @@ MAINTAINER bibi21000 <bibi21000@gmail.com>
 
 ENV JANITOO_DOCKER 1
 
+ENV JANITOO_APPLIANCE_VERSION 1
+
 RUN cat /etc/issue
 RUN env
 RUN /sbin/ip addr
@@ -28,7 +30,7 @@ RUN apt-get install -y sudo supervisor && \
     rm -Rf /root/.cache/* 2>/dev/null||true && \
     rm -Rf /tmp/* 2>/dev/null||true
 
-RUN apt-get install -y git vim-nox less && \
+RUN apt-get install -y git vim-nox nano less && \
     apt-get clean && \
     rm -Rf /root/.cache/* 2>/dev/null||true && \
     rm -Rf /tmp/* 2>/dev/null||true
