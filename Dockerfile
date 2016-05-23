@@ -10,6 +10,8 @@ RUN cat /etc/issue
 RUN env
 RUN /sbin/ip addr
 
+ENV TERM dumb
+
 RUN echo "janitoo\njanitoo" | passwd
 
 RUN apt-get update && \
