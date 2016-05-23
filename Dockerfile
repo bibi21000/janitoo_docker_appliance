@@ -38,7 +38,7 @@ RUN apt-get install -y libwrap0-dev libc-ares-dev python2.7-dev && \
     rm -Rf /root/.cache/* 2>/dev/null||true && \
     rm -Rf /tmp/* 2>/dev/null||true
 
-RUN apt-get install -y build-essential && \
+RUN apt-get install -y python-pip git python2.7-dev && \
     apt-get clean && \
     rm -Rf /root/.cache/* 2>/dev/null||true && \
     rm -Rf /tmp/* 2>/dev/null||true
@@ -51,15 +51,15 @@ RUN mkdir /opt/janitoo && \
     ln -s /opt/janitoo/log /var/log/janitoo && \
     ln -s /opt/janitoo/etc /etc/janitoo
 
-ADD . /opt/janitoo/src/janitoo
+ADD . /opt/janitoo/src/janitoo_docker_appliance
 
 WORKDIR /opt/janitoo/src
 
+RUN git clone https://github.com/bibi21000/janitoo.git
+
 RUN ln -s janitoo/Makefile.all Makefile && \
-    make docker-inst && \
     make deps module=janitoo && \
     make develop module=janitoo && \
-    make docker-deps module=janitoo && \
     apt-get clean && \
     rm -Rf /root/.cache/* 2>/dev/null||true && \
     rm -Rf /tmp/* 2>/dev/null||true
@@ -69,12 +69,12 @@ RUN make clone module=janitoo_factory && \
     rm -Rf /root/.cache/* 2>/dev/null||true && \
     rm -Rf /tmp/* 2>/dev/null||true
 
-RUN apt-get install -y python-pip lm-sensors && \
-    pip install psutil bottle batinfo https://bitbucket.org/gleb_zhulik/py3sensors/get/tip.tar.gz && \
-    cd /root/ && \
-    git clone -b develop https://github.com/nicolargo/glances.git && \
-    apt-get clean && \
-    rm -Rf /root/.cache/* 2>/dev/null||true && \
-    rm -Rf /tmp/* 2>/dev/null||true
+#RUN apt-get install -y python-pip lm-sensors && \
+#    pip install psutil bottle batinfo https://bitbucket.org/gleb_zhulik/py3sensors/get/tip.tar.gz && \
+#    cd /root/ && \
+#    git clone -b develop https://github.com/nicolargo/glances.git && \
+#    apt-get clean && \
+#    rm -Rf /root/.cache/* 2>/dev/null||true && \
+#    rm -Rf /tmp/* 2>/dev/null||true
 
 CMD ["/root/auto.sh"]
