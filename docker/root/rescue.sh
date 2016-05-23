@@ -1,4 +1,4 @@
 #!/bin/bash
-/usr/sbin/sshd
+/usr/sbin/sshd -D
 #You must loop here
 /bin/bash
