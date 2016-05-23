@@ -43,7 +43,7 @@ RUN apt-get install -y build-essential && \
     rm -Rf /root/.cache/* 2>/dev/null||true && \
     rm -Rf /tmp/* 2>/dev/null||true
 
-COPY docker/shell.sh /root/
+COPY docker/root/ /root/
 
 RUN mkdir /opt/janitoo && \
     for dir in src cache cache/janitoo_manager home log run etc init; do mkdir /opt/janitoo/$dir; done && \
@@ -60,6 +60,11 @@ RUN ln -s janitoo/Makefile.all Makefile && \
     make deps module=janitoo && \
     make develop module=janitoo && \
     make docker-deps module=janitoo && \
+    apt-get clean && \
+    rm -Rf /root/.cache/* 2>/dev/null||true && \
+    rm -Rf /tmp/* 2>/dev/null||true
+
+RUN make clone module=janitoo_factory && \
     apt-get clean && \
     rm -Rf /root/.cache/* 2>/dev/null||true && \
     rm -Rf /tmp/* 2>/dev/null||true
