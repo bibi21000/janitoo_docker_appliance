@@ -133,9 +133,9 @@ doc-commit: doc
 	cp -Rf build/docs/html/* .
 	git add *.html
 	git add *.js
-	git add tools/
-	git add api/
-	git add extensions/
+	-git add tools/
+	-git add api/
+	-git add extensions/
 	-git add _images/
 	-git add _modules/
 	-git add _sources/
