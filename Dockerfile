@@ -4,7 +4,7 @@ MAINTAINER bibi21000 <bibi21000@gmail.com>
 
 ENV JANITOO_DOCKER 1
 
-ENV JANITOO_APPLIANCE_VERSION 2
+ENV JANITOO_APPLIANCE_VERSION 3
 
 RUN cat /etc/issue
 RUN env
@@ -48,9 +48,10 @@ RUN apt-get install -y python-pip git python2.7-dev && \
     rm -Rf /tmp/* 2>/dev/null||true
 
 COPY docker/root/ /root/
+COPY docker/supervisord.conf /etc/supervisor/
 
 RUN mkdir /opt/janitoo && \
-    for dir in src cache cache/janitoo_manager home log run etc init; do mkdir /opt/janitoo/$dir; done && \
+    for dir in src cache home log run etc init; do mkdir /opt/janitoo/$dir; done && \
     mkdir /opt/janitoo/src/janitoo && \
     ln -s /opt/janitoo/log /var/log/janitoo && \
     ln -s /opt/janitoo/etc /etc/janitoo
