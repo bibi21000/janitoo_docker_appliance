@@ -14,6 +14,7 @@ Contents:
     Customize your containers<customize>
     Administer your containers<administer>
     Docker appliances directory<directory>
+    Using documentation <using_doc>
 
 Indices and tables
 ==================
