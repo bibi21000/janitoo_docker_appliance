@@ -51,7 +51,7 @@ COPY docker/root/ /root/
 COPY docker/supervisord.conf /etc/supervisor/
 
 RUN mkdir /opt/janitoo && \
-    for dir in src cache home log run etc init; do mkdir /opt/janitoo/$dir; done && \
+    for dir in src backups cache home log run etc init; do mkdir /opt/janitoo/$dir; done && \
     mkdir /opt/janitoo/src/janitoo && \
     ln -s /opt/janitoo/log /var/log/janitoo && \
     ln -s /opt/janitoo/etc /etc/janitoo

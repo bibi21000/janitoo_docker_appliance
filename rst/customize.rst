@@ -28,6 +28,7 @@ Containers
 Use a common 'store' container
 ------------------------------
 
+
 Create your own appliance image
 ===============================
 

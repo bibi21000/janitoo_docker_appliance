@@ -33,6 +33,8 @@ And create a new 'running' container :
 Backup your 'store' container
 -----------------------------
 
+docker run --volumes-from dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /dbdata
+
 
 Remove old containers
 ---------------------
