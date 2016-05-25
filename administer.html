@@ -76,11 +76,13 @@
       aria-labelledby="dLabelGlobalToc"><ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="customize.html"> Customize your containers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="customize.html#security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customize.html#containers">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customize.html#create-your-own-appliance-image">Create your own appliance image</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href=""> Administer your containers</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#upgrade-your-containers">Upgrade your containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#remove-old-containers">Remove old containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#containers">Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#images">Images</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="directory.html"> Docker appliances directory</a><ul>
@@ -131,11 +133,38 @@
       
   <div class="section" id="administer-your-containers">
 <h1>Administer your containers<a class="headerlink" href="#administer-your-containers" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="upgrade-your-containers">
-<h2>Upgrade your containers<a class="headerlink" href="#upgrade-your-containers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="containers">
+<h2>Containers<a class="headerlink" href="#containers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="update-your-running-container">
+<h3>Update your &#8216;running&#8217; container<a class="headerlink" href="#update-your-running-container" title="Permalink to this headline">¶</a></h3>
+<p>You can update your running container with a new version of Janitoo.</p>
+<p>For example, to update the NUT docker appliance. Delete the &#8216;running&#8217; container :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ docker rm nut_running
+</pre></div>
+</div>
+<p>Pull the image release :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ docker pull bibi21000/janitoo_nut
+</pre></div>
+</div>
+<p>And create a new &#8216;running&#8217; container :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ docker create --volumes-from nut_store -p 8883:22 --name nut_running bibi21000/janitoo_nut
+</pre></div>
+</div>
+</div>
+<div class="section" id="backup-your-store-container">
+<h3>Backup your &#8216;store&#8217; container<a class="headerlink" href="#backup-your-store-container" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="remove-old-containers">
-<h2>Remove old containers<a class="headerlink" href="#remove-old-containers" title="Permalink to this headline">¶</a></h2>
+<h3>Remove old containers<a class="headerlink" href="#remove-old-containers" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="images">
+<h2>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h2>
+<p>You can also attach a started &#8216;running&#8217; container to get a look at the top command:</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ docker attach hostsensor_running
+</pre></div>
+</div>
+<p>To detach use ctrl + p + ctrl + q</p>
 </div>
 </div>
 

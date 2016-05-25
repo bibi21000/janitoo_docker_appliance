@@ -21,3 +21,13 @@ Disable root login with password :
 
     sed -i -e "s/^#PermitRootLogin without-password/PermitRootLogin without-password/" /etc/ssh/sshd_config
 
+
+Containers
+==========
+
+Use a common 'store' container
+------------------------------
+
+Create your own appliance image
+===============================
+
