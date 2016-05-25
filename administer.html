@@ -153,6 +153,7 @@
 </div>
 <div class="section" id="backup-your-store-container">
 <h3>Backup your &#8216;store&#8217; container<a class="headerlink" href="#backup-your-store-container" title="Permalink to this headline">¶</a></h3>
+<p>docker run &#8211;volumes-from dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /dbdata</p>
 </div>
 <div class="section" id="remove-old-containers">
 <h3>Remove old containers<a class="headerlink" href="#remove-old-containers" title="Permalink to this headline">¶</a></h3>
