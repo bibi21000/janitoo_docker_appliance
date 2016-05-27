@@ -100,10 +100,10 @@ apidoc:
 	-rm -rf ${BUILDDIR}/janidoc/source/api
 	-mkdir -p ${BUILDDIR}/janidoc/source/api
 	cp -Rf janidoc/* ${BUILDDIR}/janidoc/
-	cd ${BUILDDIR}/janidoc/source/api && sphinx-apidoc --force --no-toc -o . ../../../../src/
-	cd ${BUILDDIR}/janidoc/source/api && mv ${MODULENAME}.rst index.rst
+	#~ cd ${BUILDDIR}/janidoc/source/api && sphinx-apidoc --force --no-toc -o . ../../../../src/
+	#~ cd ${BUILDDIR}/janidoc/source/api && mv ${MODULENAME}.rst index.rst
 
-doc: janidoc
+doc: janidoc apidoc
 	#~ - [ -f transitions_graph.py ] && python transitions_graph.py
 	-cp -Rf rst/* ${BUILDDIR}/janidoc/source
 	sed -i -e "s/MODULE_NAME/${MODULENAME}/g" ${BUILDDIR}/janidoc/source/tools/index.rst
