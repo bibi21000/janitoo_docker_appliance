@@ -1,6 +1,8 @@
 =========================
 Welcome to documentation!
 =========================
+.. jnt-badge::
+    :badges: docker
 
 .. jnt-package::
     :infos: desc, longdesc

@@ -2,22 +2,21 @@
 Developpers Tools
 =================
 
-|
-
-.. image:: https://travis-ci.org/bibi21000/janitoo_docker_appliance.svg?branch=master
-  :target: https://travis-ci.org/bibi21000/janitoo_docker_appliance
-  :alt: Travis status
-
-.. image:: https://coveralls.io/repos/bibi21000/janitoo_docker_appliance/badge.svg?branch=master&service=github
-  :target: https://coveralls.io/github/bibi21000/janitoo_docker_appliance?branch=master
-  :alt: Coveralls results
-
-.. image:: https://landscape.io/github/bibi21000/janitoo_docker_appliance/master/landscape.svg?style=flat
-   :target: https://landscape.io/github/bibi21000/janitoo_docker_appliance/master
-   :alt: Code Health
+.. jnt-badge::
 
 |
+
+.. jnt-extensions::
+
+Reports
+=======
 
 - `Nosetests report <nosetests/index.html>`_
 - `Coverage report <coverage/index.html>`_
 - `Pylint report <pylint/index.html>`_
+
+Keywords
+========
+
+.. jnt-package::
+    :infos: keywords
