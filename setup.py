@@ -58,7 +58,7 @@ setup(
     name = 'janitoo_docker_appliance',
     description = "The Docker Appliance master for Janitoo.",
     long_description = "Use it as ancestor for all your Docker's appliance.",
-    author='%s %s' %(__author__, __email__),
+    author='%s (%s)' %(__author__, __email__),
     author_email=__email__,
     nickname='bibi21000',
     copyright=__copyright__,
