@@ -19,3 +19,11 @@ Janitoo appliance docker image
 ==============================
 
 Minimal docker image for Janitoo appliance.
+
+Documentation
+=============
+You can browse online documentation here : https://bibi21000.github.io/janitoo_docker_appliance/.
+
+Tutorial
+========
+You can find a tutorial here : https://bibi21000.github.io/janitoo_tutorial/.
