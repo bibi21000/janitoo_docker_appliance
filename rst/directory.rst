@@ -12,6 +12,11 @@ NUT
 
 https://bibi21000.github.io/janitoo_nut/docker.html
 
+Roomba
+======
+
+https://bibi21000.github.io/janitoo_roomba/docker.html
+
 Tellstick
 =========
 
