@@ -87,6 +87,7 @@
 <li class="toctree-l1"><a class="reference internal" href="directory.html"> Docker appliances directory</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="directory.html#hostsensor">Hostsensor</a></li>
 <li class="toctree-l2"><a class="reference internal" href="directory.html#nut">NUT</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directory.html#roomba">Roomba</a></li>
 <li class="toctree-l2"><a class="reference internal" href="directory.html#tellstick">Tellstick</a></li>
 </ul>
 </li>
@@ -139,19 +140,76 @@
 <h1>Administer your containers<a class="headerlink" href="#administer-your-containers" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="containers">
 <h2>Containers<a class="headerlink" href="#containers" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="create-your-store-container">
+<h3>Create your &#8216;store&#8217; container<a class="headerlink" href="#create-your-store-container" title="Permalink to this headline">¶</a></h3>
+<p>After your first installation, you need to create the store container :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ make docker-local-store
+</pre></div>
+</div>
+<p>You should get something like :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>Pull local docker for janitoo_audiovideo.
+docker pull bibi21000/janitoo_audiovideo
+Using default tag: latest
+latest: Pulling from bibi21000/janitoo_audiovideo
+Digest: sha256:3c038846fc521d2c7e3b46778dedc37c7c363f7b21ca93aca816030d9cd58e8b
+Status: Image is up to date for bibi21000/janitoo_audiovideo:latest
+
+Docker local for janitoo_audiovideo pulled.
+
+Create docker local store for janitoo_audiovideo.
+docker create -v /root/.ssh/ -v /opt/janitoo/etc/ --name audiovideo_store bibi21000/janitoo_audiovideo /bin/true
+511e799c1a763b039df2772a9b874d79c5473dafc4f84418bbae79e9e6e10c14
+
+Docker local store for janitoo_audiovideo created.
+</pre></div>
+</div>
+<p>It&#8217;s possible to personnalize the port used for ssh. Create or update your local Makefile :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ vim Makefile.local
+</pre></div>
+</div>
+<p>And add :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre><span class="n">DOCKERPORT</span>   <span class="o">=</span> <span class="mi">8882</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="update-your-running-container">
 <h3>Update your &#8216;running&#8217; container<a class="headerlink" href="#update-your-running-container" title="Permalink to this headline">¶</a></h3>
-<p>You can update your running container with a new version of Janitoo.</p>
+<p>You can update your running container.</p>
 <p>For example, to update the NUT docker appliance. Delete the &#8216;running&#8217; container :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ docker rm nut_running
+<div class="code bash highlight-python"><div class="highlight"><pre>$ make docker-local-running
 </pre></div>
 </div>
-<p>Pull the image release :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ docker pull bibi21000/janitoo_nut
+<p>You should get something like :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>Pull local docker for janitoo_audiovideo.
+docker pull bibi21000/janitoo_audiovideo
+Using default tag: latest
+latest: Pulling from bibi21000/janitoo_audiovideo
+Digest: sha256:3c038846fc521d2c7e3b46778dedc37c7c363f7b21ca93aca816030d9cd58e8b
+Status: Image is up to date for bibi21000/janitoo_audiovideo:latest
+
+Docker local for janitoo_audiovideo pulled.
+
+Update local docker for janitoo_audiovideo.
+docker stop audiovideo_running
+Error response from daemon: No such container: audiovideo_running
+make: [docker-local-running] Erreur 1 (ignorée)
+docker rm audiovideo_running
+Error response from daemon: No such container: audiovideo_running
+make: [docker-local-running] Erreur 1 (ignorée)
+docker create --volumes-from audiovideo_store -p 8886:22 --name audiovideo_running bibi21000/janitoo_audiovideo
+f4c65d518ad8862b0d2873d1798ffa655d05f77e3b96fd7675db143c9cf1564e
+docker ps -a|grep audiovideo_running
+f4c65d518ad8        bibi21000/janitoo_audiovideo   &quot;/root/auto.sh&quot;     Less than a second ago   Created                                    audiovideo_running
+docker start audiovideo_running
+audiovideo_running
+docker ps|grep audiovideo_running
+f4c65d518ad8        bibi21000/janitoo_audiovideo   &quot;/root/auto.sh&quot;     1 seconds ago       Up Less than a second   0.0.0.0:8886-&gt;22/tcp   audiovideo_running
+
+Docker local for janitoo_audiovideo updated.
 </pre></div>
 </div>
-<p>And create a new &#8216;running&#8217; container :</p>
-<div class="code bash highlight-python"><div class="highlight"><pre>$ docker create --volumes-from nut_store -p 8883:22 --name nut_running bibi21000/janitoo_nut
+<p>You got a new &#8216;running&#8217; container available on ssh port 8886 :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>f4c65d518ad8        bibi21000/janitoo_audiovideo   &quot;/root/auto.sh&quot;     1 seconds ago       Up Less than a second   0.0.0.0:8886-&gt;22/tcp   audiovideo_running
 </pre></div>
 </div>
 </div>
