@@ -5,7 +5,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Administer your containers &mdash; janitoo_docker_appliance 0.0.2 documentation</title>
+    <title>Administer your containers &mdash; janitoo_sphinx 0.0.1 documentation</title>
     
     <link rel="stylesheet" href="_static/basic.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.0.2',
+        VERSION:     '0.0.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -32,7 +32,7 @@
     <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
     <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
-    <link rel="top" title="janitoo_docker_appliance 0.0.2 documentation" href="index.html" />
+    <link rel="top" title="janitoo_sphinx 0.0.1 documentation" href="index.html" />
     <link rel="next" title="Docker appliances directory" href="directory.html" />
     <link rel="prev" title="Customize your containers" href="customize.html" />
 <meta charset='utf-8'>
@@ -53,8 +53,8 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" href="index.html">
-          janitoo_docker_appliance</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.0.2</b></span>
+          janitoo_sphinx</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.0.1</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -89,6 +89,7 @@
 <li class="toctree-l2"><a class="reference internal" href="directory.html#nut">NUT</a></li>
 <li class="toctree-l2"><a class="reference internal" href="directory.html#roomba">Roomba</a></li>
 <li class="toctree-l2"><a class="reference internal" href="directory.html#tellstick">Tellstick</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directory.html#audiovideo">Audiovideo</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="using_doc.html"> Using documentation</a><ul>
@@ -220,6 +221,24 @@ Docker local for janitoo_audiovideo updated.
 <div class="section" id="remove-old-containers">
 <h3>Remove old containers<a class="headerlink" href="#remove-old-containers" title="Permalink to this headline">¶</a></h3>
 </div>
+<div class="section" id="minimal-installation">
+<h3>Minimal installation<a class="headerlink" href="#minimal-installation" title="Permalink to this headline">¶</a></h3>
+<p>On a production system, you don&#8217;t need to install Janitoo core on the system.</p>
+<p>Simply clone the janitoo_docker_appliance repository :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ git clone https://github.com/bibi21000/janitoo_docker_appliance.git
+$ cd janitoo_docker_appliance
+</pre></div>
+</div>
+<p>And create the &#8216;store&#8217; container for the tellstick appliance :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ make docker-local-store MODULENAME=janitoo_tellstick DOCKERPORT=8888 DOCKERVOLS=&quot; --privileged -v /dev/bus/usb:/dev/bus/usb&quot;
+</pre></div>
+</div>
+<p>You can retrieve all options (DOCKERPORT and DOCKERVOLS) from the Makefile in the MODULENAME repository on github.</p>
+<p>And create the &#8216;running&#8217; container :</p>
+<div class="code bash highlight-python"><div class="highlight"><pre>$ make docker-local-running MODULENAME=janitoo_tellstick
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="images">
 <h2>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h2>
@@ -243,7 +262,7 @@ Docker local for janitoo_audiovideo updated.
       
     </p>
     <p>
-        &copy; Copyright 2014,2015,2016 Sébastien GALLET aka bibi21000 (bibi21000@gmail.com).<br/>
+        &copy; Copyright 2014,2015,2016 Sébastien GALLET aka bibi2100 &lt;bibi21000@gmail.com&gt;.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.<br/>
     </p>
   </div>
