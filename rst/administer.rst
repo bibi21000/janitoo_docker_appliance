@@ -105,6 +105,33 @@ docker run --volumes-from dbdata -v $(pwd):/backup ubuntu tar cvf /backup/backup
 Remove old containers
 ---------------------
 
+Minimal installation
+--------------------
+
+On a production system, you don't need to install Janitoo core on the system.
+
+Simply clone the janitoo_docker_appliance repository :
+
+.. code:: bash
+
+    $ git clone https://github.com/bibi21000/janitoo_docker_appliance.git
+    $ cd janitoo_docker_appliance
+    
+And create the 'store' container for the tellstick appliance :
+
+.. code:: bash
+
+    $ make docker-local-store MODULENAME=janitoo_tellstick DOCKERPORT=8888 DOCKERVOLS=" --privileged -v /dev/bus/usb:/dev/bus/usb"
+
+You can retrieve all options (DOCKERPORT and DOCKERVOLS) from the Makefile in the MODULENAME repository on github.
+
+And create the 'running' container :
+
+.. code:: bash
+
+    $ make docker-local-running MODULENAME=janitoo_tellstick
+
+
 Images
 ======
 
