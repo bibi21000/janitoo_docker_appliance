@@ -4,7 +4,7 @@ MAINTAINER bibi21000 <bibi21000@gmail.com>
 
 ENV JANITOO_DOCKER 1
 
-ENV JANITOO_APPLIANCE_VERSION 12
+ENV JANITOO_APPLIANCE_VERSION 14
 
 RUN cat /etc/issue
 RUN env
@@ -37,12 +37,7 @@ RUN apt-get install -y git vim-nox nano less && \
     rm -Rf /root/.cache/* 2>/dev/null||true && \
     rm -Rf /tmp/* 2>/dev/null||true
 
-RUN apt-get install -y libwrap0-dev libc-ares-dev python2.7-dev && \
-    apt-get clean && \
-    rm -Rf /root/.cache/* 2>/dev/null||true && \
-    rm -Rf /tmp/* 2>/dev/null||true
-
-RUN apt-get install -y python-pip git python2.7-dev && \
+RUN apt-get install -y libwrap0-dev libc-ares-dev python2.7-dev python-pip build-essential && \
     apt-get clean && \
     rm -Rf /root/.cache/* 2>/dev/null||true && \
     rm -Rf /tmp/* 2>/dev/null||true
@@ -64,12 +59,17 @@ RUN git clone https://github.com/bibi21000/janitoo.git
 
 RUN ln -s janitoo/Makefile.all Makefile && \
     make deps module=janitoo && \
-    make develop module=janitoo && \
+    make install module=janitoo && \
     apt-get clean && \
     rm -Rf /root/.cache/* 2>/dev/null||true && \
     rm -Rf /tmp/* 2>/dev/null||true
 
-RUN make clone module=janitoo_factory && \
+RUN make install module=janitoo_factory && \
+    apt-get clean && \
+    rm -Rf /root/.cache/* 2>/dev/null||true && \
+    rm -Rf /tmp/* 2>/dev/null||true
+
+RUN make install module=janitoo_factory_exts && \
     apt-get clean && \
     rm -Rf /root/.cache/* 2>/dev/null||true && \
     rm -Rf /tmp/* 2>/dev/null||true
